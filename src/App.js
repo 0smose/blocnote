@@ -16,9 +16,14 @@ const App = () => {
 
 
   const saveInput = (note) => {
+    if (note.title && note.content) {
     setTitle(note.title);
     setContent(note.content);
     setNoteList([...noteList, note]);
+    } else {
+      alert('met un titre et un contenu sinon ça refresh ;)')
+      window.location.reload(false);
+    }
    
   };
 
