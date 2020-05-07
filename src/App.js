@@ -15,17 +15,22 @@ const App = () => {
 
 
 
-  const saveInput = (e) => {
-    e.preventDefault();
-    const note = [title, content];
-    localStorage.setItem('note', JSON.stringify(note));  
+  const saveInput = (note) => {
+    setTitle(note.title);
+    setContent(note.content);
+    setNoteList([...noteList, note]);
+   
   };
 
   useEffect(() => {
-    const notes = JSON.parse(localStorage.getItem('note'));
-   
-
+    const notes = JSON.parse(localStorage.getItem("notes"));
+    setNoteList(notes);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(noteList));
+  }, [noteList]);
+
 
 
 
@@ -36,16 +41,25 @@ const App = () => {
     setContent(note.content);
     
   };
-
-
+  const savedNotes = noteList.map((note, index) => (
+    <div key={index} className="note">
+      
+        <h3>{note.title}</h3>
+        <p>
+          {note.content.length > 140
+            ? note.content.substring(0, 140) + "..."
+            : note.content}
+        </p>
+      
+     
+    </div>
+  ));
 
   return (
     <div className="container-fluid row" style={{margin: "0", padding: '0'}}>
       <div className="App col-4" style={{backgroundColor: "red", height: '100vh'}}>
-        <h1>Liste de fou super jolie</h1>
-
-      <NoteList/>
-       
+        <h1 style={{paddingTop: "80px"}}>Liste de fou super jolie</h1>
+        <div style={{paddingTop: "100px"}}>{savedNotes}</div>
       </div>
       <div className="App col-8" style={{backgroundColor: "blue", height: '100vh'}}>
         

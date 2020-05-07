@@ -18,7 +18,9 @@ import React, {useState, useEffect} from 'react'
 
       
     return (
-      <div style={{paddingTop: '50vh'}}>
+       
+      <div style={{paddingTop: '10vh', height: '50%', border: "solid 2px black"}}>
+        <h1>Ecris ta super note </h1>
         <form>
             <div>
             <label>title:</label>
@@ -28,7 +30,7 @@ import React, {useState, useEffect} from 'react'
             <label>content:</label>
             <input type="text" name="content" onChange={handleInputChange} />
             </div>
-            <button onClick={handleClick}>save</button>
+            <button onClick={() => handleClick(input)}>save</button>
 
         </form>
        

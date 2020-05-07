@@ -9,7 +9,7 @@ const NoteDisplay = ({title, content}) => {
       return { __html: htmlContent };
     }
     return (
-      <div>
+      <div style={{paddingTop: '10vh'}}>
         <h1 className="text-primary">{title}</h1>
         <div dangerouslySetInnerHTML={createMarkup()} />
       </div>
